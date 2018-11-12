@@ -23,6 +23,7 @@ class NeuralNetwork:
 
         self.input_layer = self.layers[0]
         self.output_layer = self.layers[-1]
+        self.lr = learning_rate
 
     def feed_forward(self, inputs):
         out = inputs
@@ -57,7 +58,8 @@ class NeuralNetwork:
         :return: list with epoch errors
         """
         errors = []
-        for _ in range(epoch):
+        for e in range(epoch):
+            print('Epoch {} de {}. Learning rate {}'.format(e+1, epoch, self.lr))
             epoch_error = 0
             for training_input, expected_value in dataset:
                 epoch_error += self.train(training_input, expected_value)
