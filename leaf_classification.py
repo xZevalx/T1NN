@@ -98,11 +98,7 @@ for lr in lrs:
                        neuron_type=Sigmoid,
                        learning_rate=lr)
     errors = nn.epoch_training(formatted_train_data, epoch=100)
-    plt.plot(errors)
-    plt.xlabel('Epoch')
-    plt.ylabel('Error normalizado')
-    plt.title('Curva de error normalizado durante entrenamiento. Learning rate {}'.format(lr))
-    plt.savefig('training_error_lr={}.png'.format(lr))
+    plt.plot(errors, label='LR: {}'.format(lr))
 
     # Validación
     yes = 0
@@ -113,11 +109,20 @@ for lr in lrs:
 
     scores.append(score(yes, total))
 
+plt.xlabel('Epoch')
+plt.ylabel('Error normalizado')
+plt.title('Curva de error normalizado durante entrenamiento')
+plt.legend('best')
+plt.savefig('training_error_lr={}.png'.format(lr))
+
+
+plt.figure()
 plt.plot(lrs, scores)
 plt.xlabel('Learning rate')
 plt.ylabel('Score')
 plt.title('Score vs learning rate. {} muestras de entrenamiento y {} muestras de validación'.format(len(leaf)-total,
                                                                                                     total))
+plt.savefig('score_vs_lr.png')
 
 
 
