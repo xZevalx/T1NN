@@ -11,7 +11,7 @@ def random_bias():
 
 class Neuron:
 
-    def __init__(self, ninputs, bias=None, weights=None, learning_rate=.1):
+    def __init__(self, ninputs=1, bias=None, weights=None, learning_rate=.1):
         if weights is None:
             self.weights = random_weights(ninputs)
         else:
